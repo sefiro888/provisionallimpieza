@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Añadir las URL cuando se confirme el dominio definitivo. -->
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/</loc><priority>1.0</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/servicios.html</loc><priority>0.9</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/sofas.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/sillas-butacas.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/colchones.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/alfombras.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/coches.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/empresas.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/tarifas.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/zonas-madrid.html</loc><priority>0.7</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/antes-despues.html</loc><priority>0.7</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/contacto.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/blog.html</loc><priority>0.6</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/guia-limpiar-sofa.html</loc><priority>0.5</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/guia-acaros-colchon.html</loc><priority>0.5</priority></url>
+  <url><loc>https://sefiro888.github.io/provisionallimpieza/guia-tapiceria-coche.html</loc><priority>0.5</priority></url>
 
 </urlset>

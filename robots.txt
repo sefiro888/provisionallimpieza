@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-# El sitemap se activará cuando se confirme el dominio definitivo.
+Sitemap: https://sefiro888.github.io/provisionallimpieza/sitemap.xml

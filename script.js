@@ -9,9 +9,11 @@
     'index': 'bubbles',
     'servicios': 'scanner',
     'sofas': 'weave',
+    'sillas-butacas': 'threads',
     'colchones': 'air',
     'alfombras': 'threads',
     'coches': 'streaks',
+    'empresas': 'scanner',
     'antes-despues': 'split',
     'tarifas': 'measure',
     'zonas-madrid': 'radar',
@@ -413,6 +415,12 @@
         ['chaisse', 'Chaise longue 3-4 plazas (desde 130€)'],
         ['5plus', '5 o más plazas / Rinconera (desde 150€)']
       ],
+      sillas: [
+        ['pack4asiento', '4 sillas · solo asiento (desde 40€)'],
+        ['pack4', '4 sillas · asiento y respaldo (desde 55€)'],
+        ['pack6', '6 sillas · asiento y respaldo (desde 80€)'],
+        ['butaca', 'Butaca / orejero (desde 40€)']
+      ],
       colchon: [
         ['ind', 'Individual 90/105 cm (desde 55€)'],
         ['mat', 'Matrimonio 135/150 cm (desde 70€)'],
@@ -427,6 +435,11 @@
         ['pequena', 'Pequeña: hasta 3 m² (desde 35€)'],
         ['mediana', 'Mediana: 3-6 m² (desde 60€)'],
         ['grande', 'Grande: más de 6 m² (desde 90€)']
+      ],
+      empresa: [
+        ['oficina10', 'Hasta 10 sillas de oficina (desde 120€)'],
+        ['recepcion', 'Sofá o butacas de recepción (desde 90€)'],
+        ['lote', 'Lote profesional a valorar por fotos']
       ]
     };
 
@@ -455,6 +468,11 @@
         basePrice = sizes[itemSize] || 90;
         const labels = { '1': 'Sillón / 1 plaza', '2': 'Sofá 2 plazas', '3': 'Sofá 3 plazas', '4': 'Sofá 4 plazas', 'chaisse': 'Chaise Longue', '5plus': 'Sofá 5+ plazas' };
         title = labels[itemSize] || 'Sofá';
+      } else if (category === 'sillas') {
+        const sizes = { 'pack4asiento': 40, 'pack4': 55, 'pack6': 80, 'butaca': 40 };
+        basePrice = sizes[itemSize] || 40;
+        const labels = { 'pack4asiento': '4 sillas · solo asiento', 'pack4': '4 sillas completas', 'pack6': '6 sillas completas', 'butaca': 'Butaca / orejero' };
+        title = labels[itemSize] || 'Sillas tapizadas';
       } else if (category === 'colchon') {
         const sizes = { 'ind': 55, 'mat': 70, 'king': 85 };
         basePrice = sizes[itemSize] || 70;
@@ -470,6 +488,11 @@
         basePrice = sizes[itemSize] || 60;
         const labels = { 'pequena': 'Alfombra Pequeña (<3m²)', 'mediana': 'Alfombra Mediana (3-6m²)', 'grande': 'Alfombra Grande (>6m²)' };
         title = labels[itemSize] || 'Alfombra';
+      } else if (category === 'empresa') {
+        const sizes = { 'oficina10': 120, 'recepcion': 90, 'lote': 0 };
+        basePrice = sizes[itemSize] ?? 0;
+        const labels = { 'oficina10': 'Hasta 10 sillas de oficina', 'recepcion': 'Tapicería de recepción', 'lote': 'Lote profesional a valorar' };
+        title = labels[itemSize] || 'Servicio profesional';
       }
 
       // Incremento por estado de mancha
@@ -484,7 +507,7 @@
 
       // Actualizar DOM
       const priceDisplay = document.getElementById('calcTotalPrice');
-      if (priceDisplay) priceDisplay.textContent = basePrice + '€';
+      if (priceDisplay) priceDisplay.textContent = basePrice ? basePrice + '€' : 'A valorar';
 
       const breakdownItem = document.getElementById('calcItemSummary');
       if (breakdownItem) breakdownItem.textContent = title;
@@ -495,7 +518,8 @@
       // Actualizar enlace de WhatsApp
       const waBtn = document.getElementById('calcWaBtn');
       if (waBtn) {
-        const msg = encodeURIComponent(`Hola, he calculado un presupuesto en la web:\n- Servicio: ${title}\n- Tratamiento: ${extraText}\n- Zona: ${zone}\n- Precio estimado: ${basePrice}€\nMe gustaría confirmar cita. Te envío fotos.`);
+        const priceMessage = basePrice ? `${basePrice}€` : 'a valorar con fotografías';
+        const msg = encodeURIComponent(`Hola, he calculado un presupuesto en la web:\n- Servicio: ${title}\n- Tratamiento: ${extraText}\n- Zona: ${zone}\n- Precio estimado: ${priceMessage}\nMe gustaría confirmar disponibilidad. Te envío fotos.`);
         waBtn.setAttribute('href', `https://wa.me/34655441162?text=${msg}`);
       }
     };
