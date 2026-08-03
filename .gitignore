@@ -1,0 +1,12 @@
+# Capturas y archivos temporales locales
+Captura de pantalla*.png
+.claude/
+*.local.json
+
+# Identidad provisional pendiente de sustitución
+assets/logo.png
+assets/logo-horizontal.png
+assets/README.md
+
+# Documentación interna no destinada al cliente
+PLAN-DE-ACCION.md

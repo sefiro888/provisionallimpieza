@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# El sitemap se activará cuando se confirme el dominio definitivo.

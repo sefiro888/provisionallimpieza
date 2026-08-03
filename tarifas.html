@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Calculadora de Tarifas y Precios en Madrid</title>
+<meta name="description" content="Calcula online tu presupuesto estimado para limpieza de sofás, colchones, vehículos y alfombras en Madrid. Precios transparentes sin costes ocultos." />
+
+<meta name="theme-color" content="#F9F6F3" />
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=20260802-8" />
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Inicio">
+      <span class="brand-generic"><strong>Limpieza profesional</strong><small>Madrid · a domicilio</small></span>
+
+
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="antes-despues.html">Trabajos</a>
+      <a href="tarifas.html" class="active">Precios</a>
+      <a href="zonas-madrid.html">Cobertura</a>
+      <a href="blog.html">Consejos</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <a class="btn btn-primary header-cta" href="https://wa.me/34655441162?text=Hola%2C%20quiero%20consultar%20precio." target="_blank" rel="noopener">Pedir presupuesto</a>
+
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- PAGE HERO EN 2 COLUMNAS CON DECORACIÓN VISUAL -->
+<section class="page-hero">
+  <div class="container">
+    
+    <div class="breadcrumbs">
+      <a href="index.html">Inicio</a>
+      <span class="sep">/</span>
+      <span class="current">Tarifas y Calculadora</span>
+    </div>
+
+    <div class="header-topic-bar">
+      <span class="topic-icon">💰</span>
+      <span>Calculadora de presupuesto orientativo · confirmación previa por fotos</span>
+    </div>
+
+    <div class="page-hero-grid">
+      
+      <div class="page-hero-copy">
+        <h1>Calculadora de <span class="hl">tarifas y presupuestos</span> en Madrid</h1>
+        <p class="lead">Selecciona las características de lo que deseas limpiar y obtén un presupuesto preliminar al instante para Madrid Capital y provincia.</p>
+
+        <div class="page-hero-features">
+          <div class="page-hero-feat-item">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            Precios cerrados sin extras
+          </div>
+          <div class="page-hero-feat-item">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            0€ viaje en Madrid provincia
+          </div>
+          <div class="page-hero-feat-item">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            Reserva directa por WhatsApp
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#priceCalculator">Ir a la Calculadora ↓</a>
+        </div>
+      </div>
+
+      <div class="page-hero-visual">
+        <div class="hero-float-badge pos-top">
+          <div class="hero-float-icon">💰</div>
+          <div>
+            <strong>Precio previo</strong>
+            <span style="font-size:.8rem; color:var(--ink-soft);">Sin costes ocultos</span>
+          </div>
+        </div>
+
+        <div class="page-hero-frame">
+          <img src="assets/hero_madrid.jpg" alt="Calculadora de precios en Madrid" />
+        </div>
+
+        <div class="hero-float-badge pos-bottom">
+          <div class="hero-float-icon">⚡</div>
+          <div>
+            <strong>Confirmación previa</strong>
+            <span style="font-size:.8rem; color:var(--ink-soft);">Precio revisado con fotografías</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA INTERACTIVA AVANZADA -->
+<section class="section">
+  <div class="container">
+    <div class="calc-wrapper" data-reveal>
+      <div id="priceCalculator">
+        <div class="calc-grid">
+          
+          <div class="calc-main-options">
+            
+            <div class="calc-group">
+              <label class="calc-label" for="calcCategory">1. ¿Qué deseas limpiar?</label>
+              <select id="calcCategory" name="calc-category" class="calc-select">
+                <option value="sofa" selected>Sofá / Sillón / Chaise Longue</option>
+                <option value="colchon">Colchón (Individual / Matrimonio / King)</option>
+                <option value="coche">Tapicería Coche / Silla de Bebé</option>
+                <option value="alfombra">Alfombra / Moqueta</option>
+              </select>
+            </div>
+
+            <div class="calc-group">
+              <label class="calc-label" for="calcSize">2. Tamaño / Plazas / Formato</label>
+              <select id="calcSize" name="calc-size" class="calc-select">
+                <option value="1">1 plaza / Sillón individual (50€)</option>
+                <option value="2">2 plazas (desde 75€)</option>
+                <option value="3" selected>3 plazas (desde 90€)</option>
+                <option value="4">4 plazas (desde 120€)</option>
+                <option value="chaisse">Chaise longue 3-4 plazas (desde 130€)</option>
+                <option value="5plus">5 o más plazas / Rinconera (desde 150€)</option>
+              </select>
+            </div>
+
+            <div class="calc-group">
+              <label class="calc-label" for="calcCondition">3. Estado del tejido / tratamiento especial</label>
+              <select id="calcCondition" name="calc-condition" class="calc-select">
+                <option value="normal" selected>Uso estándar / Suciedad normal (Sin coste extra)</option>
+                <option value="profunda">Manchas rebeldes / Olores de mascotas (+15€)</option>
+                <option value="desinfeccion">Desinfección intensiva antiácaros (+20€)</option>
+              </select>
+            </div>
+
+            <div class="calc-group">
+              <label class="calc-label" for="calcZone">4. Municipio o zona en Madrid</label>
+              <select id="calcZone" name="calc-zone" class="calc-select">
+                <option value="Madrid Capital" selected>Madrid Capital (Todos los distritos - 0€ viaje)</option>
+                <option value="Alcalá de Henares">Alcalá de Henares (0€ viaje)</option>
+                <option value="Móstoles">Móstoles (0€ viaje)</option>
+                <option value="Fuenlabrada">Fuenlabrada (0€ viaje)</option>
+                <option value="Leganés">Leganés (0€ viaje)</option>
+                <option value="Getafe">Getafe (0€ viaje)</option>
+                <option value="Alcorcón">Alcorcón (0€ viaje)</option>
+                <option value="Torrejón de Ardoz">Torrejón de Ardoz (0€ viaje)</option>
+                <option value="Alcobendas / San Sebastián">Alcobendas / Sanse (0€ viaje)</option>
+                <option value="Las Rozas / Majadahonda">Las Rozas / Majadahonda (0€ viaje)</option>
+                <option value="Pozuelo de Alarcón">Pozuelo de Alarcón (0€ viaje)</option>
+                <option value="Otra zona de Madrid">Otra zona de la provincia de Madrid</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- RESUMEN EN TIEMPO REAL -->
+          <div class="calc-result-box">
+            <div class="calc-result-header">
+              <h4>Resumen del Presupuesto</h4>
+              <p style="font-size:.85rem; color:var(--ink-soft); margin:0;">Precio estimado final sin compromiso</p>
+            </div>
+
+            <div>
+              <ul class="calc-breakdown">
+                <li><span>Elemento:</span> <strong id="calcItemSummary">Sofá 3 plazas</strong></li>
+                <li><span>Tratamiento:</span> <strong id="calcConditionSummary">Estándar</strong></li>
+                <li><span>Desplazamiento:</span> <strong>0€ (Gratis en Madrid)</strong></li>
+              </ul>
+
+              <div class="calc-price-tag" id="calcTotalPrice">90€</div>
+              <p style="font-size:.8rem; color:var(--ink-soft); margin-bottom:1rem;">*El precio se confirma tras revisar fotos por WhatsApp.</p>
+            </div>
+
+            <a id="calcWaBtn" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;">
+              Pedir este Presupuesto por WhatsApp
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLA COMPLETA DE PRECIOS TRANSPARENTES -->
+<section class="section section-alt">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Tabla de Precios Referenciales</p>
+      <h2>Tarifas orientativas de limpieza en Madrid</h2>
+    </header>
+
+    <div class="pricing-grid">
+      <article class="price-card" data-reveal>
+        <h3>Sofás &amp; Sillones</h3>
+        <ul class="price-list">
+          <li><span>1 plaza</span><strong>desde 50€</strong></li>
+          <li><span>2 plazas</span><strong>desde 75€</strong></li>
+          <li><span>3 plazas</span><strong>desde 90€</strong></li>
+          <li><span>4 plazas</span><strong>desde 120€</strong></li>
+          <li><span>Chaise longue</span><strong>desde 130€</strong></li>
+          <li><span>5+ plazas / Rinconera</span><strong>desde 150€</strong></li>
+        </ul>
+      </article>
+
+      <article class="price-card" data-reveal>
+        <h3>Colchones &amp; Canapés</h3>
+        <ul class="price-list">
+          <li><span>Individual (90cm)</span><strong>desde 55€</strong></li>
+          <li><span>Matrimonio (135/150cm)</span><strong>desde 70€</strong></li>
+          <li><span>Queen / King Size</span><strong>desde 85€</strong></li>
+          <li><span>Base / Canapé</span><strong>20€ - 30€</strong></li>
+        </ul>
+      </article>
+
+      <article class="price-card" data-reveal>
+        <h3>Vehículos &amp; Alfombras</h3>
+        <ul class="price-list">
+          <li><span>Tapicería de coche</span><strong>desde 85€</strong></li>
+          <li><span>Carrito de bebé</span><strong>25€</strong></li>
+          <li><span>Silla infantil coche</span><strong>25€</strong></li>
+          <li><span>Alfombras</span><strong>desde 10€ / m²</strong></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><span class="footer-service-label">Limpieza profesional en Madrid</span></div>
+    <p>© <span id="year"></span> Limpieza profesional en Madrid. Tarifas transparentes de limpieza en Madrid.</p>
+  </div>
+</footer>
+
+<div class="float-stack">
+  <a class="float-btn float-wa" href="https://wa.me/34655441162?text=Hola%2C%20quiero%20pedir%20presupuesto." target="_blank" rel="noopener">
+    <span class="float-label">WhatsApp</span>
+  </a>
+</div>
+
+<script src="script.js?v=20260802-8" defer></script>
+</body>
+</html>

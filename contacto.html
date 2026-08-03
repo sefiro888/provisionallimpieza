@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Contacto y Presupuesto por WhatsApp</title>
+<meta name="description" content="Ponte en contacto con Limpieza profesional en Madrid. Solicita presupuesto rápido enviándonos una foto por WhatsApp al 655 44 11 62 o escríbenos directamente." />
+
+<meta name="theme-color" content="#F9F6F3" />
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=20260802-8" />
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Inicio">
+      <span class="brand-generic"><strong>Limpieza profesional</strong><small>Madrid · a domicilio</small></span>
+
+
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="antes-despues.html">Trabajos</a>
+      <a href="tarifas.html">Precios</a>
+      <a href="zonas-madrid.html">Cobertura</a>
+      <a href="blog.html">Consejos</a>
+      <a href="contacto.html" class="active">Contacto</a>
+    </nav>
+
+    <a class="btn btn-primary header-cta" href="https://wa.me/34655441162?text=Hola%2C%20quiero%20pedir%20presupuesto." target="_blank" rel="noopener">Pedir presupuesto</a>
+
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- PAGE HERO EN 2 COLUMNAS CON DECORACIÓN VISUAL -->
+<section class="page-hero">
+  <div class="container">
+    
+    <div class="breadcrumbs">
+      <a href="index.html">Inicio</a>
+      <span class="sep">/</span>
+      <span class="current">Contacto</span>
+    </div>
+
+    <div class="header-topic-bar">
+      <span class="topic-icon">📱</span>
+      <span>Presupuesto previo por WhatsApp · 655 44 11 62</span>
+    </div>
+
+    <div class="page-hero-grid">
+      
+      <div class="page-hero-copy">
+        <h1>Contacto e información de <span class="hl">servicio en Madrid</span></h1>
+        <p class="lead">Prepara tu solicitud en menos de un minuto. Con servicio, municipio y fotografías podremos valorar mejor el trabajo antes de reservar.</p>
+
+        <div class="page-hero-features">
+          <div class="page-hero-feat-item">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            Precio confirmado antes de reservar
+          </div>
+          <div class="page-hero-feat-item">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            Alcance del servicio explicado
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#preparar-solicitud">Preparar mi solicitud</a>
+        </div>
+      </div>
+
+      <div class="page-hero-visual">
+        <div class="hero-float-badge pos-top">
+          <div class="hero-float-icon">📱</div>
+          <div>
+            <strong>Contacto por WhatsApp</strong>
+            <span style="font-size:.8rem; color:var(--ink-soft);">655 44 11 62</span>
+          </div>
+        </div>
+
+        <div class="page-hero-frame">
+          <img src="assets/hero_madrid.jpg" alt="Contacto Limpieza profesional en Madrid" />
+        </div>
+
+        <div class="hero-float-badge pos-bottom">
+          <div class="hero-float-icon">📍</div>
+          <div>
+            <strong>Madrid Capital &amp; Provincia</strong>
+            <span style="font-size:.8rem; color:var(--ink-soft);">Condiciones confirmadas antes de la cita</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOLICITUD GUIADA POR WHATSAPP -->
+<section class="section contact-planner-section" id="preparar-solicitud">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Solicitud guiada</p>
+      <h2>Prepara un mensaje que podamos valorar bien</h2>
+      <p class="section-sub">Completa dos datos esenciales. Los detalles son opcionales y las fotografías se adjuntan después en WhatsApp.</p>
+    </header>
+
+    <form class="contact-planner" data-contact-planner novalidate data-reveal>
+      <div class="contact-planner-fields">
+        <div class="contact-field">
+          <label for="contactService"><span>01</span> ¿Qué necesitas limpiar?</label>
+          <select id="contactService" data-contact-service required>
+            <option value="">Selecciona un servicio</option>
+            <option value="Sofá o chaise longue">Sofá o chaise longue</option>
+            <option value="Colchón">Colchón</option>
+            <option value="Alfombra o moqueta">Alfombra o moqueta</option>
+            <option value="Tapicería de coche">Tapicería de coche</option>
+            <option value="Silla, carrito u otra tapicería">Silla, carrito u otra tapicería</option>
+          </select>
+        </div>
+
+        <div class="contact-field">
+          <label for="contactTown"><span>02</span> ¿En qué municipio?</label>
+          <input id="contactTown" data-contact-town list="contactTownList" type="text" autocomplete="address-level2" placeholder="Por ejemplo: Getafe" required />
+          <datalist id="contactTownList">
+            <option value="Madrid Capital"></option><option value="Alcalá de Henares"></option><option value="Móstoles"></option>
+            <option value="Fuenlabrada"></option><option value="Leganés"></option><option value="Getafe"></option>
+            <option value="Alcorcón"></option><option value="Torrejón de Ardoz"></option><option value="Parla"></option>
+            <option value="Alcobendas"></option><option value="Las Rozas de Madrid"></option><option value="San Sebastián de los Reyes"></option>
+            <option value="Pozuelo de Alarcón"></option><option value="Rivas-Vaciamadrid"></option><option value="Coslada"></option>
+            <option value="Valdemoro"></option><option value="Majadahonda"></option><option value="Collado Villalba"></option>
+            <option value="Aranjuez"></option><option value="Arganda del Rey"></option><option value="Boadilla del Monte"></option>
+            <option value="Pinto"></option><option value="Colmenar Viejo"></option><option value="Tres Cantos"></option>
+          </datalist>
+        </div>
+
+        <div class="contact-field contact-field-wide">
+          <label for="contactDetails"><span>03</span> Añade detalles <small>Opcional</small></label>
+          <textarea id="contactDetails" data-contact-details rows="4" maxlength="350" placeholder="Medidas aproximadas, número de plazas, manchas, olores, mascotas o cualquier dato útil."></textarea>
+          <small class="contact-field-help">No incluyas datos sensibles. Podrás añadir las fotografías directamente en WhatsApp.</small>
+        </div>
+      </div>
+
+      <aside class="contact-request-preview">
+        <span class="contact-preview-kicker">Tu solicitud</span>
+        <h3>Lista para completar en WhatsApp</h3>
+        <div class="contact-preview-data">
+          <div><small>Servicio</small><strong data-contact-preview-service>Sin seleccionar</strong></div>
+          <div><small>Municipio</small><strong data-contact-preview-town>Sin indicar</strong></div>
+        </div>
+        <div class="contact-photo-guide">
+          <strong>Después adjunta 3 fotos</strong>
+          <span>Una general · una de la etiqueta · una de las manchas</span>
+        </div>
+        <button type="submit" class="btn btn-primary" data-contact-submit disabled>Abrir WhatsApp con mi solicitud</button>
+        <p class="contact-privacy">Nada se envía desde esta página. El mensaje se abre en WhatsApp para que puedas revisarlo antes de enviarlo.</p>
+      </aside>
+    </form>
+
+    <div class="contact-alternatives" data-reveal>
+      <div><span>¿Prefieres hablar?</span><strong>655 44 11 62</strong><a href="tel:+34655441162">Llamar por teléfono →</a></div>
+      <div><span>¿Quieres ver resultados?</span><strong>Trabajos y criterios reales</strong><a href="antes-despues.html">Abrir la galería →</a></div>
+      <div><span>¿Tienes dudas de cobertura?</span><strong>Comprueba tu municipio</strong><a href="zonas-madrid.html">Consultar cobertura →</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECCIÓN FAQ -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Preguntas Frecuentes</p>
+      <h2>Resuelve tus dudas antes de reservar</h2>
+    </header>
+
+    <div class="faq">
+      <details data-reveal><summary>¿Tengo que mover el sofá o colchón fuera de casa?</summary><p>No. Nos desplazamos a tu domicilio con todo el equipo. Tú no tienes que mover absolutamente nada.</p></details>
+      <details data-reveal><summary>¿Cuánto tiempo tarda en secarse el tejido?</summary><p>Habitualmente se completa dentro de las 24 horas. El tiempo exacto depende del tejido, la ventilación y la temperatura de la estancia.</p></details>
+      <details data-reveal><summary>¿El desplazamiento está incluido?</summary><p>Está incluido en los municipios indicados en nuestra página de cobertura. Si tu localidad no aparece, confirmamos ruta y cualquier posible condición antes de reservar.</p></details>
+      <details data-reveal><summary>¿Qué producto utilizáis si hay niños o mascotas?</summary><p>Antes de trabajar confirmamos el tejido y te informamos del producto y del tiempo de ventilación recomendado. Indícanos si hay alergias o sensibilidad especial.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><span class="footer-service-label">Limpieza profesional en Madrid</span></div>
+    <p>© <span id="year"></span> Limpieza profesional en Madrid. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<div class="float-stack">
+  <a class="float-btn float-wa" href="https://wa.me/34655441162" target="_blank" rel="noopener">
+    <span class="float-label">WhatsApp</span>
+  </a>
+</div>
+
+<script src="script.js?v=20260802-8" defer></script>
+</body>
+</html>
