@@ -3,6 +3,7 @@
 (function () {
   let closeMobileNav = () => {};
   let closeThemeMenu = () => {};
+  let closeServiceChooser = () => {};
 
   // -------- Atmósfera temática específica de cada página --------
   const pageEffects = {
@@ -123,18 +124,85 @@
 
   setupThemeSwitcher();
 
+  // -------- Selector directo de familia de servicio --------
+  const setupServiceChooser = () => {
+    const headerInner = document.querySelector('.header-inner');
+    const themeSwitcher = headerInner?.querySelector('.theme-switcher');
+    if (!headerInner || !themeSwitcher || headerInner.querySelector('.service-chooser')) return;
+
+    const chooser = document.createElement('div');
+    chooser.className = 'service-chooser';
+    chooser.innerHTML = `
+      <button type="button" class="service-chooser-trigger" data-service-chooser-trigger aria-expanded="false" aria-haspopup="true">
+        <span>¿Qué necesitas limpiar?</span><b aria-hidden="true">⌄</b>
+      </button>
+      <div class="service-chooser-menu" data-service-chooser-menu hidden>
+        <span class="service-chooser-kicker">Ir directamente a</span>
+        <a href="servicios.html#hogar"><strong>Hogar</strong><small>Sofás, sillas y colchones</small></a>
+        <a href="servicios.html#textiles"><strong>Textiles</strong><small>Alfombras, moquetas y cortinas</small></a>
+        <a href="servicios.html#movilidad"><strong>Vehículos y bebé</strong><small>Coches, carritos y sillas infantiles</small></a>
+        <a href="servicios.html#profesional"><strong>Empresas</strong><small>Oficinas, alojamientos y locales</small></a>
+      </div>`;
+    headerInner.insertBefore(chooser, themeSwitcher);
+
+    const trigger = chooser.querySelector('[data-service-chooser-trigger]');
+    const menu = chooser.querySelector('[data-service-chooser-menu]');
+    const closeChooser = () => {
+      menu.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    closeServiceChooser = closeChooser;
+    trigger.addEventListener('click', () => {
+      const willOpen = menu.hidden;
+      if (willOpen) {
+        closeMobileNav();
+        closeThemeMenu();
+      }
+      menu.hidden = !willOpen;
+      trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+    chooser.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeChooser));
+    document.addEventListener('click', (event) => {
+      if (!chooser.contains(event.target)) closeChooser();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) {
+        closeChooser();
+        trigger.focus();
+      }
+    });
+  };
+
+  setupServiceChooser();
+
   // -------- Menú móvil --------
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('primary-nav');
   if (toggle && nav) {
+    const servicePages = new Set(['servicios', 'sofas', 'sillas-butacas', 'colchones', 'alfombras', 'coches', 'empresas']);
+    const homePages = new Set(['index', 'antes-despues', 'blog', 'guia-limpiar-sofa', 'guia-acaros-colchon', 'guia-tapiceria-coche']);
+    const activeSection = servicePages.has(pageSlug) ? 'servicios' : homePages.has(pageSlug) ? 'index' : pageSlug;
+    const mainNavigation = [
+      ['index', 'index.html', 'Inicio'],
+      ['servicios', 'servicios.html', 'Servicios'],
+      ['tarifas', 'tarifas.html', 'Precios'],
+      ['zonas-madrid', 'zonas-madrid.html', 'Zonas'],
+      ['contacto', 'contacto.html', 'Contacto']
+    ];
+    nav.innerHTML = mainNavigation.map(([key, href, label]) => `<a href="${href}"${key === activeSection ? ' class="active"' : ''}>${label}</a>`).join('');
+
     if (!nav.querySelector('.nav-mobile-head')) {
       nav.insertAdjacentHTML('afterbegin', `
         <div class="nav-mobile-head">
           <span class="nav-mobile-kicker">Servicio en Madrid</span>
-          <strong>¿Qué necesitas limpiar?</strong>
-          <small>Explora servicios, precios y trabajos reales.</small>
+          <strong>Todo lo importante, a un toque</strong>
+          <small>Servicios, precios, zonas y contacto.</small>
         </div>`);
       nav.insertAdjacentHTML('beforeend', `
+        <div class="nav-mobile-services">
+          <span>¿Qué necesitas limpiar?</span>
+          <div><a href="servicios.html#hogar">Hogar</a><a href="servicios.html#textiles">Textiles</a><a href="servicios.html#movilidad">Vehículos y bebé</a><a href="servicios.html#profesional">Empresas</a></div>
+        </div>
         <div class="nav-mobile-action">
           <span><small>Respuesta rápida</small><strong>Presupuesto por WhatsApp</strong></span>
           <a href="https://wa.me/34655441162?text=Hola%2C%20quiero%20pedir%20un%20presupuesto." target="_blank" rel="noopener" aria-label="Pedir presupuesto por WhatsApp">Pedir presupuesto <b aria-hidden="true">→</b></a>
@@ -153,6 +221,7 @@
     toggle.addEventListener('click', () => {
       const willOpen = !nav.classList.contains('open');
       if (willOpen) closeThemeMenu();
+      if (willOpen) closeServiceChooser();
       setNavOpen(willOpen);
     });
     nav.querySelectorAll('a').forEach((a) =>
@@ -175,6 +244,111 @@
       if (window.innerWidth > 900) setNavOpen(false);
     }, { passive: true });
   }
+
+  // -------- Recorrido uniforme de decisión en cada servicio --------
+  const serviceBlueprints = {
+    sofas: {
+      label: 'Sofás y chaise longue',
+      clean: 'Sofás de 1 a 5+ plazas, chaise longue, rinconeras y sillones tapizados.',
+      problems: 'Suciedad de uso, polvo, cercos, manchas localizadas y olores. La viabilidad se confirma al revisar el tejido.',
+      price: 'Desde 50€ para una plaza, 75€ para dos y 90€ para tres. Precio final confirmado mediante fotografías.',
+      process: 'Revisión, aspirado, producto compatible, trabajo de zonas críticas y extracción controlada.',
+      drying: 'Habitualmente dentro de 24 horas, según relleno, ventilación, temperatura y época del año.',
+      faq: [['¿Se eliminan todas las manchas?', 'No se puede garantizar sin revisar su origen, antigüedad y los productos aplicados anteriormente.'], ['¿Hay que mover el sofá?', 'No. Trabajamos a domicilio y te indicamos antes cómo despejar la zona.']],
+      whatsapp: 'Hola, quiero presupuesto para limpiar un sofá. Plazas: ____. Municipio: ____. Adjunto fotos.',
+      related: [['Sillas y butacas', 'sillas-butacas.html'], ['Alfombras y textiles', 'alfombras.html'], ['Colchones', 'colchones.html']]
+    },
+    'sillas-butacas': {
+      label: 'Sillas y butacas',
+      clean: 'Sillas de comedor, butacas, orejeros, bancos tapizados, pufs y reposapiés.',
+      problems: 'Manchas de comida o bebida, suciedad de uso, roce en respaldos y reposabrazos y olores.',
+      price: 'Desde 10€/unidad para asiento, 15€/unidad para silla completa y 40€ para butaca. Mínimo de servicio: 40€.',
+      process: 'Clasificamos piezas y tejidos, protegemos estructuras, tratamos cada zona y realizamos extracción controlada.',
+      drying: 'Depende del relleno y del número de caras tapizadas. Damos una recomendación concreta al finalizar.',
+      faq: [['¿Se pueden limpiar conjuntos completos?', 'Sí. Valoramos el lote completo para optimizar el desplazamiento y el tiempo de trabajo.'], ['¿Tratáis madera o metal?', 'Protegemos la estructura, pero el servicio presupuestado corresponde a la parte tapizada.']],
+      whatsapp: 'Hola, quiero presupuesto para sillas o butacas. Cantidad: ____. Municipio: ____. Adjunto fotos.',
+      related: [['Sofás', 'sofas.html'], ['Servicios para empresas', 'empresas.html'], ['Alfombras y textiles', 'alfombras.html']]
+    },
+    colchones: {
+      label: 'Colchones',
+      clean: 'Colchones individuales, de matrimonio, queen y king, además de bases y cabeceros bajo valoración.',
+      problems: 'Polvo, suciedad acumulada, manchas orgánicas, cercos y olores. Explicamos qué resultado es razonable esperar.',
+      price: 'Desde 55€ individual, 70€ matrimonio y 85€ queen o king. Se confirma tras revisar tamaño y caras.',
+      process: 'Inspección, aspirado, tratamiento localizado y extracción adaptada al material y al estado del colchón.',
+      drying: 'Debe quedar bien ventilado y no utilizarse hasta completar el secado. El tiempo varía según humedad y tejido.',
+      faq: [['¿Se limpian las dos caras?', 'Podemos presupuestar una o dos caras. Indícalo al enviar las fotografías.'], ['¿Se puede dormir esa misma noche?', 'Depende de la ventilación y la hora del servicio; te lo indicaremos antes de reservar.']],
+      whatsapp: 'Hola, quiero presupuesto para un colchón. Medida: ____. Caras: ____. Municipio: ____. Adjunto fotos.',
+      related: [['Sofás', 'sofas.html'], ['Sillas y butacas', 'sillas-butacas.html'], ['Alfombras y textiles', 'alfombras.html']]
+    },
+    alfombras: {
+      label: 'Alfombras y textiles',
+      clean: 'Alfombras, moquetas, cortinas y visillos compatibles con tratamiento a domicilio.',
+      problems: 'Polvo, suciedad de paso, manchas, olores y pérdida de aspecto. Revisamos composición y sistema de instalación.',
+      price: 'Alfombras desde 10€/m² y moquetas desde 8€/m². Medidas, fibra y accesibilidad determinan el importe final.',
+      process: 'Identificación de fibra, prueba de estabilidad, aspirado, tratamiento localizado y extracción cuando procede.',
+      drying: 'Varía especialmente por grosor, superficie y ventilación. Te indicamos cómo colocar y ventilar cada pieza.',
+      faq: [['¿Limpiáis cualquier alfombra?', 'Primero revisamos etiqueta, fibra, base y estabilidad del color. Algunas piezas requieren otro procedimiento.'], ['¿Hay que descolgar las cortinas?', 'Depende del tejido y la instalación; lo confirmamos con fotografías.']],
+      whatsapp: 'Hola, quiero presupuesto para alfombra, moqueta o cortinas. Medidas: ____. Municipio: ____. Adjunto fotos.',
+      related: [['Sofás', 'sofas.html'], ['Colchones', 'colchones.html'], ['Servicios para empresas', 'empresas.html']]
+    },
+    coches: {
+      label: 'Vehículos y bebé',
+      clean: 'Asientos y tapicerías de coche, además de carritos y sillas infantiles desmontables bajo valoración.',
+      problems: 'Suciedad de uso, manchas de bebida o comida, huellas, polvo y olores en superficies textiles.',
+      price: 'Tapicería completa desde 85€, carritos desde 25€ y sillas infantiles desde 25€.',
+      process: 'Revisamos accesos y materiales, aspiramos, tratamos manchas y extraemos la suciedad con humedad controlada.',
+      drying: 'El vehículo o pieza debe permanecer ventilado hasta completar el secado antes de volver a utilizarse.',
+      faq: [['¿Necesitáis toma de corriente?', 'Te confirmaremos los requisitos del servicio y el espacio necesario antes de cerrar la cita.'], ['¿Limpiáis techo y paneles?', 'Se valoran según material, estado y riesgo de desprendimiento. Envíanos fotografías específicas.']],
+      whatsapp: 'Hola, quiero presupuesto para vehículo o artículo infantil. Tipo: ____. Municipio: ____. Adjunto fotos.',
+      related: [['Sofás', 'sofas.html'], ['Sillas y butacas', 'sillas-butacas.html'], ['Servicios para empresas', 'empresas.html']]
+    },
+    empresas: {
+      label: 'Empresas y alojamientos',
+      clean: 'Sillas de oficina, recepciones, butacas, colchones, cabeceros, alfombras y moquetas por lotes.',
+      problems: 'Suciedad de uso intensivo, manchas localizadas y desgaste visual en espacios de atención o trabajo.',
+      price: 'Presupuesto por volumen, superficies, accesibilidad y planificación. Los lotes se valoran mediante inventario y fotos.',
+      process: 'Inventario, valoración, plan por zonas, ejecución coordinada y recomendación de mantenimiento.',
+      drying: 'Planificamos las zonas para respetar ventilación y secado sin bloquear toda la actividad del espacio.',
+      faq: [['¿Podéis trabajar por fases?', 'Sí. Podemos organizar el servicio por plantas, salas o grupos de piezas.'], ['¿Ofrecéis mantenimiento periódico?', 'Se estudia según volumen, frecuencia y necesidades reales del negocio.']],
+      whatsapp: 'Hola, solicito presupuesto profesional. Tipo de negocio: ____. Piezas: ____. Municipio: ____. Adjunto fotos.',
+      related: [['Sillas y butacas', 'sillas-butacas.html'], ['Alfombras y moquetas', 'alfombras.html'], ['Colchones', 'colchones.html']]
+    }
+  };
+
+  const setupServiceDecisionGuide = () => {
+    const data = serviceBlueprints[pageSlug];
+    const hero = document.querySelector('.page-hero');
+    if (!data || !hero || document.querySelector('.service-decision-section')) return;
+    const guide = document.createElement('section');
+    guide.className = 'section service-decision-section';
+    guide.innerHTML = `
+      <div class="container">
+        <header class="section-head service-decision-head" data-reveal>
+          <p class="eyebrow">Todo lo necesario antes de reservar</p>
+          <h2>${data.label}: información clara en 7 pasos</h2>
+          <p class="section-sub">Revisa alcance, precio y condiciones. Si encaja contigo, envíanos las fotos desde el último paso.</p>
+        </header>
+        <ol class="service-decision-grid">
+          <li data-reveal><span>01</span><div><small>Qué limpiamos</small><p>${data.clean}</p></div></li>
+          <li data-reveal><span>02</span><div><small>Qué problemas tratamos</small><p>${data.problems}</p></div></li>
+          <li data-reveal><span>03</span><div><small>Precio orientativo</small><p>${data.price}</p></div></li>
+          <li data-reveal><span>04</span><div><small>Cómo trabajamos</small><p>${data.process}</p></div></li>
+          <li data-reveal><span>05</span><div><small>Tiempo de secado</small><p>${data.drying}</p></div></li>
+          <li class="service-decision-faq" data-reveal><span>06</span><div><small>Preguntas frecuentes</small>${data.faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></li>
+          <li class="service-decision-cta" data-reveal><span>07</span><div><small>Solicita tu presupuesto</small><p>Envía fotografías, cantidad y municipio. Confirmaremos alcance y precio antes de reservar.</p><a class="btn btn-primary" href="https://wa.me/34655441162?text=${encodeURIComponent(data.whatsapp)}" target="_blank" rel="noopener">Preparar mensaje de WhatsApp</a></div></li>
+        </ol>
+      </div>`;
+    hero.insertAdjacentElement('afterend', guide);
+
+    const related = document.createElement('section');
+    related.className = 'section related-services';
+    related.innerHTML = `<div class="container"><header class="section-head" data-reveal><p class="eyebrow">Completa el servicio</p><h2>También puede interesarte</h2></header><div class="related-services-grid">${data.related.map(([label, href], index) => `<a href="${href}" data-reveal><span>0${index + 1}</span><strong>${label}</strong><b aria-hidden="true">→</b></a>`).join('')}</div></div>`;
+    const finalCta = document.querySelector('.contact-cta');
+    const footer = document.querySelector('.site-footer');
+    (finalCta || footer)?.insertAdjacentElement('beforebegin', related);
+  };
+
+  setupServiceDecisionGuide();
 
   // -------- Año dinámico --------
   const year = document.getElementById('year');
