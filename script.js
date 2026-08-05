@@ -166,7 +166,33 @@
       ['zonas-madrid', 'zonas-madrid.html', 'Zonas'],
       ['contacto', 'contacto.html', 'Contacto']
     ];
-    nav.innerHTML = mainNavigation.map(([key, href, label]) => `<a href="${href}"${key === activeSection ? ' class="active"' : ''}>${label}</a>`).join('');
+    nav.innerHTML = mainNavigation.map(([key, href, label]) => {
+      if (key !== 'servicios') return `<a href="${href}"${key === activeSection ? ' class="active"' : ''}>${label}</a>`;
+      return `<div class="nav-dropdown${key === activeSection ? ' is-active' : ''}">
+        <button class="nav-dropdown-trigger${key === activeSection ? ' active' : ''}" type="button" aria-expanded="false" aria-haspopup="true">${label}<span aria-hidden="true">⌄</span></button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="servicios.html" role="menuitem"><strong>Todos los servicios</strong><small>Ver el catálogo completo</small></a>
+          <a href="sofas.html" role="menuitem"><strong>Sofás</strong><small>Tapicería y chaise longue</small></a>
+          <a href="sillas-butacas.html" role="menuitem"><strong>Sillas y butacas</strong><small>Asientos, respaldos y orejeros</small></a>
+          <a href="colchones.html" role="menuitem"><strong>Colchones</strong><small>Higiene y tratamiento antiácaros</small></a>
+          <a href="alfombras.html" role="menuitem"><strong>Alfombras y textiles</strong><small>Limpieza por m²</small></a>
+          <a href="coches.html" role="menuitem"><strong>Vehículos y bebé</strong><small>Tapicería interior</small></a>
+          <a href="empresas.html" role="menuitem"><strong>Empresas</strong><small>Oficinas y alojamientos</small></a>
+        </div>
+      </div>`;
+    }).join('');
+
+    const serviceDropdown = nav.querySelector('.nav-dropdown');
+    const serviceTrigger = nav.querySelector('.nav-dropdown-trigger');
+    const closeServiceDropdown = () => {
+      if (!serviceDropdown || !serviceTrigger) return;
+      serviceDropdown.classList.remove('open');
+      serviceTrigger.setAttribute('aria-expanded', 'false');
+    };
+    serviceTrigger?.addEventListener('click', () => {
+      const open = serviceDropdown.classList.toggle('open');
+      serviceTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
     if (!nav.querySelector('.nav-mobile-head')) {
       nav.insertAdjacentHTML('afterbegin', `
@@ -197,15 +223,17 @@
 
     toggle.addEventListener('click', () => {
       const willOpen = !nav.classList.contains('open');
-      if (willOpen) closeServiceChooser();
+      if (willOpen) { closeServiceChooser(); closeServiceDropdown(); }
       setNavOpen(willOpen);
     });
     nav.querySelectorAll('a').forEach((a) =>
       a.addEventListener('click', () => {
         setNavOpen(false);
+        closeServiceDropdown();
       })
     );
     document.addEventListener('click', (event) => {
+      if (serviceDropdown && !serviceDropdown.contains(event.target)) closeServiceDropdown();
       if (nav.classList.contains('open') && !nav.contains(event.target) && !toggle.contains(event.target)) {
         setNavOpen(false);
       }
