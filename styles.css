@@ -4652,3 +4652,6 @@ html[data-page="index"] .page-atmosphere { opacity: .58; }
   .footer-meta { grid-column: 1; max-width: none; }
   .footer-legal-nav { grid-column: 1; justify-content: center; }
 }
+
+/* Refuerzo final: ningún tema vuelve a mostrar la cuadrícula del hero. */
+.hero::after { background-image: none !important; opacity: 0 !important; }

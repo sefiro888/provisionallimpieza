@@ -323,6 +323,12 @@
     const data = serviceBlueprints[pageSlug];
     const hero = document.querySelector('.page-hero');
     if (!data || !hero || document.querySelector('.service-decision-section')) return;
+    // Todas las fichas muestran siempre un bloque de FAQ completo, incluso si
+    // una futura plantilla solo define dos preguntas específicas.
+    const faqItems = [...(data.faq || [])];
+    if (faqItems.length < 3) {
+      faqItems.push(['¿Cómo recibo el presupuesto?', 'Envíanos municipio, tipo de pieza y dos o tres fotografías por WhatsApp. Confirmamos el importe antes de reservar.']);
+    }
     const guide = document.createElement('section');
     guide.className = 'section service-decision-section';
     guide.innerHTML = `
@@ -338,7 +344,7 @@
           <li data-reveal><span>03</span><div><small>Precio orientativo</small><p>${data.price}</p></div></li>
           <li data-reveal><span>04</span><div><small>Cómo trabajamos</small><p>${data.process}</p></div></li>
           <li data-reveal><span>05</span><div><small>Tiempo de secado</small><p>${data.drying}</p></div></li>
-          <li class="service-decision-faq" data-reveal><span>06</span><div><small>Preguntas frecuentes</small>${data.faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></li>
+          <li class="service-decision-faq" data-reveal><span>06</span><div><small>Preguntas frecuentes</small>${faqItems.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></li>
           <li class="service-decision-cta" data-reveal><span>07</span><div><small>Solicita tu presupuesto</small><p>Envía fotografías, cantidad y municipio. Confirmaremos alcance y precio antes de reservar.</p><a class="btn btn-primary" href="https://wa.me/34655441162?text=${encodeURIComponent(data.whatsapp)}" target="_blank" rel="noopener">Enviar fotos y recibir precio</a><em class="whatsapp-response-note">Respuesta habitual: en horario comercial.</em></div></li>
         </ol>
       </div>`;
