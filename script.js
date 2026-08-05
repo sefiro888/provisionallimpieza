@@ -8,7 +8,7 @@
   const pageEffects = {
     'index': 'bubbles',
     'servicios': 'scanner',
-    'sofas': 'weave',
+    'sofas': 'steam',
     'sillas-butacas': 'threads',
     'colchones': 'air',
     'alfombras': 'threads',
@@ -84,6 +84,13 @@
     });
 
     document.querySelectorAll('.site-footer .footer-inner').forEach((footer) => {
+      if (!footer.querySelector('.footer-tagline')) {
+        const tagline = document.createElement('p');
+        tagline.className = 'footer-tagline';
+        tagline.textContent = 'Lavado a vapor y limpieza profesional de tapicerías a domicilio en Madrid.';
+        const firstParagraph = footer.querySelector('p');
+        footer.insertBefore(tagline, firstParagraph || null);
+      }
       if (footer.querySelector('.footer-legal-nav')) return;
       const legal = document.createElement('nav');
       legal.className = 'footer-legal-nav';

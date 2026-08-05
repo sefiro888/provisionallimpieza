@@ -4329,6 +4329,7 @@ body {
   object-position: left center;
   filter: drop-shadow(0 8px 20px rgba(0,0,0,.24));
 }
+.footer-brand .footer-logo { width: min(248px, 100%); height: auto; max-height: 88px; border-radius: 0; }
 .float-wa { box-shadow: 0 15px 36px rgba(15,128,70,.32); }
 
 .coverage-select,
@@ -4446,4 +4447,63 @@ body {
     justify-content: center;
   }
   .float-wa .float-label { display: inline; }
+}
+
+/* Héroe móvil: una prueba visual antes de la lista de garantías */
+.hero-mobile-proof { display: none; }
+
+/* Atmosferas: burbujas en inicio; vapor suave en fichas, sin tramas técnicas */
+.page-atmosphere { opacity: .3; }
+html[data-page="index"] .page-atmosphere { opacity: .58; }
+.effect-steam { opacity: .36; background: radial-gradient(ellipse at 72% 44%, rgba(36,184,242,.1), transparent 28rem); }
+.effect-steam span {
+  width: clamp(130px, 25vw, 280px);
+  height: 82px;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 14px rgba(36,184,242,.18));
+  animation: effectSteam 7s ease-in-out infinite;
+}
+.effect-steam span::after {
+  content: "";
+  position: absolute;
+  right: 18%;
+  top: -10px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+}
+.effect-steam span:nth-child(1) { right: 7%; top: 22%; transform: rotate(-8deg); }
+.effect-steam span:nth-child(2) { right: 20%; top: 37%; width: 190px; animation-delay: -1.4s; }
+.effect-steam span:nth-child(3) { right: 5%; top: 53%; width: 240px; animation-delay: -2.8s; }
+.effect-steam span:nth-child(4) { right: 28%; top: 68%; width: 150px; animation-delay: -4.2s; }
+.effect-steam span:nth-child(n+5) { display: none; }
+@keyframes effectSteam { 0%,100% { transform: translate3d(0,8px,0) rotate(-5deg) scaleX(.9); opacity: .25; } 50% { transform: translate3d(-14px,-10px,0) rotate(4deg) scaleX(1.05); opacity: .8; } }
+
+/* Pie de página editorial, reconocible y útil */
+.site-footer { padding: 3.5rem 0 1.5rem; }
+.footer-inner { display: grid; grid-template-columns: minmax(220px, 1.1fr) minmax(260px, 1fr); gap: .35rem 3rem; text-align: left; }
+.footer-brand { display: block; margin: 0 0 .5rem; }
+.footer-brand .footer-logo { object-position: left center; }
+.footer-tagline { grid-column: 1; color: #BBD9E9 !important; max-width: 34ch; }
+.footer-inner > p:not(.footer-tagline):not(.footer-meta) { grid-column: 2; align-self: end; max-width: 34ch; }
+.footer-meta { grid-column: 1 / -1; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.14); }
+.footer-legal-nav { grid-column: 1 / -1; margin-top: 0; justify-content: flex-start; }
+
+@media (max-width: 680px) {
+  .hero-mobile-proof { display: grid; position: relative; margin: .2rem 0 1.25rem; overflow: hidden; border: 1px solid rgba(80,190,232,.35); border-radius: 18px; background: #fff; box-shadow: var(--shadow-sm); }
+  .hero-mobile-proof img { width: 100%; height: 152px; object-fit: cover; }
+  .hero-mobile-proof figcaption { display: flex; align-items: center; justify-content: space-between; gap: .7rem; padding: .7rem .85rem; }
+  .hero-mobile-proof strong { color: var(--ink); font-size: .78rem; }
+  .hero-mobile-proof span { color: var(--ink-soft); font-size: .68rem; text-align: right; }
+  html[data-page="index"] .page-atmosphere { opacity: .48; }
+  .site-footer { padding-bottom: 2rem; }
+  .footer-inner { grid-template-columns: 1fr; gap: .2rem; text-align: center; }
+  .footer-brand .footer-logo { object-position: center; margin-inline: auto; }
+  .footer-tagline,
+  .footer-inner > p:not(.footer-tagline):not(.footer-meta),
+  .footer-meta { grid-column: 1; max-width: none; }
+  .footer-legal-nav { grid-column: 1; justify-content: center; }
 }
