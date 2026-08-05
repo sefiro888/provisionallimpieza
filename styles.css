@@ -4271,6 +4271,60 @@ body {
 .check-pill { background: linear-gradient(135deg, #A8E7FF, #24B8F2); color: #031631; }
 .tech-badge { border-color: #B4DDF2; background: rgba(255,255,255,.72); color: #17486B; }
 
+/* Hero principal: contexto profesional antes de mostrar las fotografÃ­as */
+.hero-detail {
+  max-width: 58ch;
+  margin: -.65rem 0 1.15rem;
+  color: var(--ink-soft);
+  font-size: .98rem;
+  line-height: 1.65;
+}
+.hero-service-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .55rem;
+  margin: 0 0 1.25rem;
+}
+.hero-service-summary span {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 42px;
+  padding: .55rem .65rem;
+  border: 1px solid rgba(22, 58, 51, .12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .72);
+  color: var(--ink);
+  font-size: .72rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+.hero-service-summary b {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  border-radius: 50%;
+  background: rgba(36, 184, 242, .16);
+  color: var(--accent-2);
+  font-size: .58rem;
+  letter-spacing: .02em;
+}
+@media (max-width: 680px) {
+  .hero-detail {
+    margin-top: -.45rem;
+    font-size: .92rem;
+    line-height: 1.55;
+  }
+  .hero-service-summary {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+    margin-bottom: 1rem;
+  }
+  .hero-service-summary span { min-height: 40px; }
+}
+
 .section,
 .editorial-section,
 .portfolio-preview,
