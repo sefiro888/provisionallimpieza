@@ -2,7 +2,6 @@
 
 (function () {
   let closeMobileNav = () => {};
-  let closeThemeMenu = () => {};
   let closeServiceChooser = () => {};
 
   // -------- Atmósfera temática específica de cada página --------
@@ -37,98 +36,61 @@
     effectHost.appendChild(atmosphere);
   }
 
-  // -------- Selector de identidad visual --------
-  const themes = {
-    forest: { label: 'Bosque', description: 'Natural y cercana', colors: ['#163a33', '#c9df78', '#f7f5ef'] },
-    ocean: { label: 'Agua', description: 'Limpia y técnica', colors: ['#123d52', '#70c8c4', '#f2f8f8'] },
-    clay: { label: 'Arcilla', description: 'Cálida y doméstica', colors: ['#512f27', '#e7a06f', '#fbf4ee'] },
-    graphite: { label: 'Grafito', description: 'Premium y sobria', colors: ['#242424', '#d8ba68', '#f5f1e7'] },
-    clinical: { label: 'Clínico', description: 'Precisa y tecnológica', colors: ['#0647d7', '#00d6b4', '#f5f8ff'] },
-    nocturne: { label: 'Nocturno', description: 'Oscura y exclusiva', colors: ['#071c2c', '#a8ff3e', '#17364a'] },
-    lavender: { label: 'Lavanda', description: 'Boutique y elegante', colors: ['#4a285e', '#d5a8ff', '#f8f0ff'] },
-    solar: { label: 'Solar', description: 'Gráfica y atrevida', colors: ['#1729c9', '#ffd84d', '#fff8db'] }
-  };
+  // -------- Identidad única Lava Express --------
+  document.documentElement.dataset.brand = 'lava-express';
+  delete document.documentElement.dataset.theme;
+  try { localStorage.removeItem('fcm-theme'); } catch (_) { /* Preferencia antigua opcional */ }
 
-  const applyTheme = (themeName) => {
-    const selected = themes[themeName] ? themeName : 'forest';
-    document.documentElement.dataset.theme = selected;
-    try { localStorage.setItem('fcm-theme', selected); } catch (_) { /* Preferencia opcional */ }
-    document.querySelectorAll('[data-theme-option]').forEach((option) => {
-      option.setAttribute('aria-pressed', option.dataset.themeOption === selected ? 'true' : 'false');
+  const setupBrandIdentity = () => {
+    document.title = document.title.includes('Lava Express')
+      ? document.title
+      : `${document.title} | Lava Express`;
+
+    let themeColor = document.querySelector('meta[name="theme-color"]');
+    if (!themeColor) {
+      themeColor = document.createElement('meta');
+      themeColor.name = 'theme-color';
+      document.head.appendChild(themeColor);
+    }
+    themeColor.content = '#06152F';
+
+    [
+      { rel: 'icon', sizes: '512x512' },
+      { rel: 'apple-touch-icon', sizes: '512x512' }
+    ].forEach(({ rel, sizes }) => {
+      let link = document.querySelector(`link[rel="${rel}"]`);
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = rel;
+        document.head.appendChild(link);
+      }
+      link.type = 'image/png';
+      link.sizes = sizes;
+      link.href = 'assets/lava-express-icon.png';
     });
-    const currentLabel = document.querySelector('[data-theme-current]');
-    if (currentLabel) currentLabel.textContent = themes[selected].label;
-    const trigger = document.querySelector('[data-theme-trigger]');
-    if (trigger) trigger.setAttribute('aria-label', `Cambiar diseño. Seleccionado: ${themes[selected].label}`);
-  };
 
-  let initialTheme = 'forest';
-  try { initialTheme = localStorage.getItem('fcm-theme') || 'forest'; } catch (_) { /* Sin almacenamiento */ }
-  applyTheme(initialTheme);
-
-  const setupThemeSwitcher = () => {
-    const headerInner = document.querySelector('.header-inner');
-    const headerCta = document.querySelector('.header-cta');
-    if (!headerInner || !headerCta || headerInner.querySelector('.theme-switcher')) return;
-
-    const switcher = document.createElement('div');
-    switcher.className = 'theme-switcher';
-    switcher.innerHTML = `
-      <button type="button" class="theme-trigger" data-theme-trigger aria-expanded="false" aria-haspopup="true">
-        <span class="theme-trigger-icon" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="theme-trigger-copy"><small>Diseño</small><strong data-theme-current>Bosque</strong></span>
-        <span class="theme-chevron" aria-hidden="true">⌄</span>
-      </button>
-      <div class="theme-menu" data-theme-menu hidden>
-        <div class="theme-menu-head"><strong>Elige una dirección visual</strong><span>8 diseños completos · la web recuerda tu elección</span></div>
-        ${Object.entries(themes).map(([key, theme]) => `
-          <button type="button" class="theme-option" data-theme-option="${key}" aria-pressed="false">
-            <span class="theme-swatches" aria-hidden="true">${theme.colors.map((color) => `<i style="--swatch:${color}"></i>`).join('')}</span>
-            <span><strong>${theme.label}</strong><small>${theme.description}</small></span>
-            <span class="theme-check" aria-hidden="true">✓</span>
-          </button>`).join('')}
-      </div>`;
-    headerInner.insertBefore(switcher, headerCta);
-
-    const trigger = switcher.querySelector('[data-theme-trigger]');
-    const menu = switcher.querySelector('[data-theme-menu]');
-    const closeMenu = () => {
-      menu.hidden = true;
-      trigger.setAttribute('aria-expanded', 'false');
-    };
-    closeThemeMenu = closeMenu;
-    trigger.addEventListener('click', () => {
-      const willOpen = menu.hidden;
-      if (willOpen) closeMobileNav();
-      menu.hidden = !willOpen;
-      trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    document.querySelectorAll('.brand').forEach((brand) => {
+      brand.setAttribute('aria-label', 'Lava Express · Inicio');
+      brand.innerHTML = '<img class="brand-logo" src="assets/lava-express-horizontal.png" alt="Lava Express · Lavado a vapor" />';
     });
-    switcher.querySelectorAll('[data-theme-option]').forEach((option) => {
-      option.addEventListener('click', () => {
-        applyTheme(option.dataset.themeOption);
-        closeMenu();
-        trigger.focus();
-      });
+    document.querySelectorAll('.footer-service-label').forEach((label) => {
+      label.innerHTML = '<img class="footer-logo" src="assets/lava-express-horizontal.png" alt="Lava Express · Lavado a vapor" loading="lazy" />';
     });
-    document.addEventListener('click', (event) => {
-      if (!switcher.contains(event.target)) closeMenu();
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !menu.hidden) {
-        closeMenu();
-        trigger.focus();
+
+    document.querySelectorAll('.footer-meta').forEach((meta) => {
+      if (meta.textContent.includes('Limpieza profesional en Madrid')) {
+        meta.innerHTML = `© <span id="year"></span> Lava Express · Lavado a vapor en Madrid.`;
       }
     });
-    applyTheme(document.documentElement.dataset.theme);
   };
 
-  setupThemeSwitcher();
+  setupBrandIdentity();
 
   // -------- Selector directo de familia de servicio --------
   const setupServiceChooser = () => {
     const headerInner = document.querySelector('.header-inner');
-    const themeSwitcher = headerInner?.querySelector('.theme-switcher');
-    if (!headerInner || !themeSwitcher || headerInner.querySelector('.service-chooser')) return;
+    const headerCta = headerInner?.querySelector('.header-cta');
+    if (!headerInner || !headerCta || headerInner.querySelector('.service-chooser')) return;
 
     const chooser = document.createElement('div');
     chooser.className = 'service-chooser';
@@ -143,7 +105,7 @@
         <a href="servicios.html#movilidad"><strong>Vehículos y bebé</strong><small>Coches, carritos y sillas infantiles</small></a>
         <a href="servicios.html#profesional"><strong>Empresas</strong><small>Oficinas, alojamientos y locales</small></a>
       </div>`;
-    headerInner.insertBefore(chooser, themeSwitcher);
+    headerInner.insertBefore(chooser, headerCta);
 
     const trigger = chooser.querySelector('[data-service-chooser-trigger]');
     const menu = chooser.querySelector('[data-service-chooser-menu]');
@@ -156,7 +118,6 @@
       const willOpen = menu.hidden;
       if (willOpen) {
         closeMobileNav();
-        closeThemeMenu();
       }
       menu.hidden = !willOpen;
       trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
@@ -220,7 +181,6 @@
 
     toggle.addEventListener('click', () => {
       const willOpen = !nav.classList.contains('open');
-      if (willOpen) closeThemeMenu();
       if (willOpen) closeServiceChooser();
       setNavOpen(willOpen);
     });
