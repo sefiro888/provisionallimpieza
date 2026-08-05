@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=20260805-11" />
+<link rel="stylesheet" href="styles.css?v=20260805-12" />
 </head>
 <body>
 
@@ -129,6 +129,10 @@
         </div>
 
         <div class="coverage-controls">
+          <label class="coverage-postcode-wrap">
+            <span class="sr-only">Código postal</span>
+            <input type="text" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" placeholder="o código postal" data-coverage-postcode aria-label="Código postal" />
+          </label>
           <label class="coverage-select-wrap">
             <span class="sr-only">Municipio</span>
             <select class="coverage-select" data-coverage-select>
@@ -161,6 +165,12 @@
             </select>
           </label>
           <button type="button" class="btn btn-primary coverage-submit" data-coverage-submit disabled>Comprobar cobertura</button>
+        </div>
+
+        <div class="coverage-status-key" role="group" aria-label="Tipos de cobertura">
+          <span><i class="status-dot status-direct"></i><strong>Cobertura directa</strong><small>Municipios incluidos</small></span>
+          <span><i class="status-dot status-review"></i><strong>Revisamos ruta</strong><small>Puede aplicar suplemento</small></span>
+          <span><i class="status-dot status-consult"></i><strong>Consultar</strong><small>Municipio o código postal no listado</small></span>
         </div>
 
         <div class="coverage-popular" role="group" aria-label="Municipios más consultados">
@@ -230,6 +240,12 @@
       <article><span>02</span><h3>Municipios incluidos</h3><p>Las localidades del selector tienen desplazamiento incluido. Confirmamos siempre la ruta.</p></article>
       <article><span>03</span><h3>¿No aparece?</h3><p>Selecciona “No encuentro mi municipio” y consulta disponibilidad antes de descartar el servicio.</p></article>
     </div>
+
+    <div class="local-seo-grid" data-reveal>
+      <article><p class="eyebrow">Madrid capital</p><h3>Lavado a vapor en los 21 distritos</h3><p>Trabajamos en viviendas, oficinas y alojamientos de Madrid Capital. Indica barrio o código postal junto con las fotografías.</p></article>
+      <article><p class="eyebrow">Corredor del Henares</p><h3>Alcalá, Torrejón y Coslada</h3><p>Organizamos rutas para sofás, colchones, sillas y tapicerías profesionales en el este de la Comunidad de Madrid.</p></article>
+      <article><p class="eyebrow">Sur y oeste</p><h3>Getafe, Móstoles y Las Rozas</h3><p>Consulta disponibilidad para servicios a domicilio en el sur y el oeste. Confirmamos cualquier condición antes de reservar.</p></article>
+    </div>
   </div>
 </section>
 
@@ -249,6 +265,6 @@
   </a>
 </div>
 
-<script src="script.js?v=20260805-11" defer></script>
+<script src="script.js?v=20260805-12" defer></script>
 </body>
 </html>

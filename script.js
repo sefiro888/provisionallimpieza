@@ -82,6 +82,15 @@
         meta.innerHTML = `© <span id="year"></span> Lava Express · Lavado a vapor en Madrid.`;
       }
     });
+
+    document.querySelectorAll('.site-footer .footer-inner').forEach((footer) => {
+      if (footer.querySelector('.footer-legal-nav')) return;
+      const legal = document.createElement('nav');
+      legal.className = 'footer-legal-nav';
+      legal.setAttribute('aria-label', 'Información legal');
+      legal.innerHTML = '<a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="condiciones-servicio.html">Condiciones del servicio</a>';
+      footer.appendChild(legal);
+    });
   };
 
   setupBrandIdentity();
@@ -295,7 +304,7 @@
           <li data-reveal><span>04</span><div><small>Cómo trabajamos</small><p>${data.process}</p></div></li>
           <li data-reveal><span>05</span><div><small>Tiempo de secado</small><p>${data.drying}</p></div></li>
           <li class="service-decision-faq" data-reveal><span>06</span><div><small>Preguntas frecuentes</small>${data.faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></li>
-          <li class="service-decision-cta" data-reveal><span>07</span><div><small>Solicita tu presupuesto</small><p>Envía fotografías, cantidad y municipio. Confirmaremos alcance y precio antes de reservar.</p><a class="btn btn-primary" href="https://wa.me/34655441162?text=${encodeURIComponent(data.whatsapp)}" target="_blank" rel="noopener">Preparar mensaje de WhatsApp</a></div></li>
+          <li class="service-decision-cta" data-reveal><span>07</span><div><small>Solicita tu presupuesto</small><p>Envía fotografías, cantidad y municipio. Confirmaremos alcance y precio antes de reservar.</p><a class="btn btn-primary" href="https://wa.me/34655441162?text=${encodeURIComponent(data.whatsapp)}" target="_blank" rel="noopener">Enviar fotos y recibir precio</a><em class="whatsapp-response-note">Respuesta habitual: en horario comercial.</em></div></li>
         </ol>
       </div>`;
     hero.insertAdjacentElement('afterend', guide);
@@ -668,6 +677,7 @@
   // -------- COMPROBADOR SIMPLE DE COBERTURA --------
   document.querySelectorAll('[data-coverage-checker]').forEach((checker) => {
     const select = checker.querySelector('[data-coverage-select]');
+    const postcode = checker.querySelector('[data-coverage-postcode]');
     const submit = checker.querySelector('[data-coverage-submit]');
     const result = checker.querySelector('[data-coverage-result]');
     const eyebrow = checker.querySelector('[data-coverage-eyebrow]');
@@ -678,13 +688,15 @@
     if (!select || !submit || !result || !title || !text || !whatsapp) return;
 
     const showCoverage = () => {
-      const value = select.value;
-      if (!value) {
-        select.focus();
+      const postcodeValue = postcode?.value.trim() || '';
+      const value = select.value || '';
+      if (!value && !postcodeValue) {
+        (postcode || select).focus();
         return;
       }
 
-      const needsCheck = value === 'other';
+      const location = postcodeValue || value;
+      const needsCheck = value === 'other' || Boolean(postcodeValue);
       result.hidden = false;
       result.classList.toggle('is-consult', needsCheck);
       if (icon) icon.textContent = needsCheck ? '?' : '✓';
@@ -692,22 +704,24 @@
       if (needsCheck) {
         if (eyebrow) eyebrow.textContent = 'Consulta rápida';
         title.textContent = 'Comprobamos tu localidad';
-        text.textContent = 'Indícanos municipio o código postal. Confirmaremos disponibilidad, ruta y cualquier condición antes de reservar.';
+        text.textContent = 'Confirmaremos disponibilidad, ruta y cualquier posible suplemento antes de reservar. No se confirma una cita sin revisar primero tus fotos.';
         whatsapp.textContent = 'Consultar por WhatsApp';
-        whatsapp.href = 'https://wa.me/34655441162?text=' + encodeURIComponent('Hola, quiero saber si ofrecéis servicio en mi municipio. Mi localidad o código postal es: ');
+        whatsapp.href = 'https://wa.me/34655441162?text=' + encodeURIComponent(`Hola, quiero comprobar cobertura. Mi municipio o código postal es: ${location}. Adjunto fotos.`);
       } else {
         if (eyebrow) eyebrow.textContent = 'Cobertura confirmada';
         title.textContent = `Sí, trabajamos en ${value}`;
         text.textContent = 'Desplazamiento incluido. Revisamos tus fotos y confirmamos precio y disponibilidad antes de acordar la cita.';
         whatsapp.textContent = 'Pedir presupuesto';
-        whatsapp.href = 'https://wa.me/34655441162?text=' + encodeURIComponent(`Hola, quiero pedir presupuesto para una limpieza de tapicería en ${value}. Adjunto fotos.`);
+        whatsapp.href = 'https://wa.me/34655441162?text=' + encodeURIComponent(`Hola, quiero pedir presupuesto para una limpieza de tapicería en ${location}. Adjunto fotos.`);
       }
     };
 
-    select.addEventListener('change', () => {
-      submit.disabled = !select.value;
+    const syncCoverageButton = () => {
+      submit.disabled = !(select.value || postcode?.value.trim());
       result.hidden = true;
-    });
+    };
+    select.addEventListener('change', syncCoverageButton);
+    postcode?.addEventListener('input', syncCoverageButton);
     submit.addEventListener('click', showCoverage);
 
     checker.querySelectorAll('[data-coverage-choice]').forEach((choice) => {
@@ -764,6 +778,14 @@
       window.open(`https://wa.me/34655441162?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
     });
     syncContactPlanner();
+  });
+
+  // -------- MENSAJE CLARO DE CONVERSIÓN --------
+  document.querySelectorAll('#calcWaBtn, [data-contact-submit]').forEach((button) => {
+    button.textContent = 'Enviar fotos y recibir precio';
+  });
+  document.querySelectorAll('.booking-flow > .btn, .contact-cta .btn-primary').forEach((button) => {
+    if (/WhatsApp|Empezar por/.test(button.textContent)) button.textContent = 'Enviar fotos y recibir precio';
   });
 
   // -------- FILTRO DE PESTAÑAS EN GALERÍA ANTES Y DESPUÉS --------

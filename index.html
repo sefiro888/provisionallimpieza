@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=20260805-11" />
+<link rel="stylesheet" href="styles.css?v=20260805-12" />
 
 <script type="application/ld+json">
 {
@@ -33,10 +33,20 @@
 
   "description": "Limpieza profesional de tapicerías a domicilio: sofás, colchones, alfombras, sillas y coches en Madrid Capital y toda la provincia.",
   "telephone": "+34655441162",
+  "priceRange": "€€",
+  "serviceType": "Lavado a vapor y limpieza profesional de tapicerías a domicilio",
+  "hasOfferCatalog": {"@type":"OfferCatalog","name":"Servicios Lava Express","itemListElement":["Sofás","Colchones","Alfombras y textiles","Vehículos y bebé","Sillas y butacas","Empresas"]},
   "areaServed": ["Madrid", "Alcalá de Henares", "Móstoles", "Fuenlabrada", "Leganés", "Getafe", "Alcorcón", "Torrejón de Ardoz", "Parla", "Alcobendas", "Las Rozas", "Pozuelo de Alarcón"],
   "address": {"@type":"PostalAddress","addressLocality":"Madrid","addressRegion":"Comunidad de Madrid","addressCountry":"ES"}
 
 }
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"¿Cómo recibo un precio?","acceptedAnswer":{"@type":"Answer","text":"Envía municipio, tipo de pieza y 2 o 3 fotografías por WhatsApp. Lava Express revisa el caso y confirma el precio antes de reservar."}},
+  {"@type":"Question","name":"¿El servicio es a domicilio?","acceptedAnswer":{"@type":"Answer","text":"Sí. Lava Express se desplaza a domicilios, oficinas y alojamientos de Madrid y municipios de la Comunidad según cobertura."}},
+  {"@type":"Question","name":"¿Cuánto tarda en secarse?","acceptedAnswer":{"@type":"Answer","text":"Habitualmente el secado se completa dentro de 24 horas, según tejido, relleno, ventilación y temperatura."}}
+]}
 </script>
 </head>
 <body>
@@ -165,11 +175,17 @@
       <article class="quick-price" data-reveal><span>Colchón matrimonio</span><strong>desde 70€</strong><a href="colchones.html">Ver servicio</a></article>
       <article class="quick-price" data-reveal><span>Sillas tapizadas</span><strong>desde 10€/ud</strong><a href="sillas-butacas.html">Ver servicio</a></article>
     </div>
+    <div class="trust-strip" data-reveal>
+      <div><span>01</span><strong>Lavado a vapor</strong><small>Tratamiento profesional y controlado.</small></div>
+      <div><span>02</span><strong>Maquinaria profesional</strong><small>Extracción profunda adaptada al tejido.</small></div>
+      <div><span>03</span><strong>Productos seguros</strong><small>Te informamos si hay niños, mascotas o sensibilidad.</small></div>
+      <div><span>04</span><strong>Precio confirmado</strong><small>Revisamos fotos antes de reservar.</small></div>
+    </div>
     <div class="booking-flow" data-reveal>
       <div><span>01</span><h3>Envía 2 o 3 fotos</h3><p>Una general y otra de las manchas. Añade tu municipio.</p></div>
       <div><span>02</span><h3>Recibe precio y alcance</h3><p>Te indicamos tratamiento, importe y tiempo aproximado.</p></div>
       <div><span>03</span><h3>Elige tu cita</h3><p>Acordamos día y franja. Pagas el precio confirmado.</p></div>
-      <a class="btn btn-primary" href="https://wa.me/34655441162?text=Hola.%20Quiero%20presupuesto.%20Servicio%3A%20____.%20Municipio%3A%20____.%20Adjunto%20fotos." target="_blank" rel="noopener">Empezar por WhatsApp</a>
+      <div class="booking-flow-action"><a class="btn btn-primary" href="https://wa.me/34655441162?text=Hola.%20Quiero%20presupuesto.%20Servicio%3A%20____.%20Municipio%3A%20____.%20Adjunto%20fotos." target="_blank" rel="noopener">Enviar fotos y recibir precio</a><small class="whatsapp-response-note">Indica municipio, servicio y adjunta 2–3 fotos. Respuesta habitual en horario comercial.</small></div>
     </div>
   </div>
 </section>
@@ -467,6 +483,6 @@
   </a>
 </div>
 
-<script src="script.js?v=20260805-11" defer></script>
+<script src="script.js?v=20260805-12" defer></script>
 </body>
 </html>
