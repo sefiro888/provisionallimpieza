@@ -4429,3 +4429,21 @@ body {
   .coverage-status-key { display: grid; }
   .coverage-status-key > span { border-radius: var(--radius-sm); }
 }
+
+/* WhatsApp móvil: siempre visible sin bloquear el contenido */
+@media (max-width: 680px) {
+  .float-stack {
+    left: auto;
+    right: max(.75rem, env(safe-area-inset-right));
+    bottom: max(.75rem, env(safe-area-inset-bottom));
+  }
+  .float-wa {
+    width: auto;
+    min-width: 142px;
+    height: 50px;
+    padding: .72rem 1rem;
+    border-radius: 999px;
+    justify-content: center;
+  }
+  .float-wa .float-label { display: inline; }
+}
