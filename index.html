@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=20260805-19" />
+<link rel="stylesheet" href="styles.css?v=20260805-20" />
 
 <script type="application/ld+json">
 {
@@ -76,6 +76,18 @@
   </div>
 </header>
 
+<!-- RESUMEN ANIMADO: visible aquí solo en móvil -->
+<section class="marquee marquee-mobile" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Limpieza de Sofás en Madrid</span><span>·</span>
+    <span>Colchones y Cabeceros</span><span>·</span>
+    <span>Alfombras y Moquetas</span><span>·</span>
+    <span>Tapicería de Coche</span><span>·</span>
+    <span>Chaise Longue y Sillones</span><span>·</span>
+    <span>Carritos y Sillas de Bebé</span><span>·</span>
+  </div>
+</section>
+
 <main>
 
 <!-- HERO PRINCIPAL -->
@@ -89,7 +101,6 @@
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span> Lava Express · Lavado a vapor · Madrid</p>
       <h1>Limpieza profesional de <span class="hl">tapicerías a domicilio</span> en Madrid</h1>
-      <p class="lead">Envíanos fotografías, indícanos tu municipio y recibe una orientación clara antes de reservar.</p>
       <p class="hero-detail">En Lava Express aplicamos lavado a vapor e inyección-extracción para recuperar sofás, colchones, sillas, alfombras y tapicerías de coche. Revisamos el material, el tamaño y el estado de cada pieza para recomendarte el tratamiento más seguro y eficaz.</p>
       
       <div class="tech-badge">
@@ -102,7 +113,10 @@
           <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.4 8.6 3.4 15.6c0 2.5.7 4.9 2 7L3 29l6.6-2.3c2 1.1 4.2 1.7 6.4 1.7 7 0 12.6-5.6 12.6-12.6S23 3 16 3zm0 23c-2 0-4-.5-5.7-1.5l-.4-.2-3.9 1.3 1.3-3.8-.3-.4A10 10 0 0 1 6 15.6 10 10 0 0 1 16 5.6c5.5 0 10 4.5 10 10s-4.5 10-10 10zm5.7-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1s-1.3-.5-2.5-1.5c-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.2.3-.9 1-.9 2.4s.9 2.8 1 3c.2.2 1.9 2.9 4.6 4 .6.2 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.4z"/></svg>
           Pedir presupuesto por WhatsApp
         </a>
-        <a class="btn btn-ghost" href="tarifas.html">Ver precios orientativos →</a>
+        <a class="btn btn-ghost hero-photo-cta" href="https://wa.me/34655441162?text=Hola.%20Quiero%20enviar%20fotograf%C3%ADas%20para%20recibir%20una%20orientaci%C3%B3n.%20Servicio%3A%20____.%20Municipio%3A%20____." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6 10 4h4l1.5 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5Z"/><circle cx="12" cy="12.5" r="3.5"/></svg>
+          <span>Enviar fotografías y recibir orientación</span>
+        </a>
       </div>
       <div class="hero-service-summary" role="group" aria-label="Qué incluye la valoración inicial">
         <span><b>01</b> Valoración por fotos</span>
@@ -113,11 +127,6 @@
         <img src="assets/hero_sofas.jpg" alt="Profesional limpiando un sofá de tela a domicilio" loading="lazy" />
         <figcaption><strong>Valoración por fotografías</strong><span>Te orientamos antes de reservar.</span></figcaption>
       </figure>
-      <ul class="hero-stats">
-        <li><strong>01</strong><span>Valoración mediante fotografías</span></li>
-        <li><strong>02</strong><span>Precio confirmado antes de reservar</span></li>
-        <li><strong>03</strong><span>Servicio realizado a domicilio</span></li>
-      </ul>
     </div>
 
     <div class="hero-visual" data-reveal>
@@ -156,12 +165,12 @@
       <a href="servicios.html">Ver catálogo completo →</a>
     </div>
     <div class="home-service-access-grid">
-      <a href="sofas.html" data-reveal><span>01</span><strong>Sofás</strong><small>Sofás, chaise longue y rinconeras</small><b>→</b></a>
-      <a href="sillas-butacas.html" data-reveal><span>02</span><strong>Sillas y butacas</strong><small>Comedores, orejeros, bancos y pufs</small><b>→</b></a>
-      <a href="colchones.html" data-reveal><span>03</span><strong>Colchones</strong><small>Individuales, matrimonio y king</small><b>→</b></a>
-      <a href="alfombras.html" data-reveal><span>04</span><strong>Alfombras y textiles</strong><small>Alfombras, moquetas, cortinas y visillos</small><b>→</b></a>
-      <a href="coches.html" data-reveal><span>05</span><strong>Vehículos y bebé</strong><small>Coches, carritos y sillas infantiles</small><b>→</b></a>
-      <a href="empresas.html" data-reveal><span>06</span><strong>Empresas</strong><small>Oficinas, alojamientos, clínicas y locales</small><b>→</b></a>
+      <a href="sofas.html" data-reveal><span class="service-category-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 11V8.5a2.5 2.5 0 0 1 2.5-2.5h9A2.5 2.5 0 0 1 19 8.5V11M4 11a2 2 0 0 0-2 2v4h20v-4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v1H6v-1a2 2 0 0 0-2-2ZM4 17v2M20 17v2"/></svg></span><strong>Sofás</strong><small>Sofás, chaise longue y rinconeras</small><b>→</b></a>
+      <a href="sillas-butacas.html" data-reveal><span class="service-category-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 11V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6M5 11h14v5H5zM7 16v5M17 16v5"/></svg></span><strong>Sillas y butacas</strong><small>Comedores, orejeros, bancos y pufs</small><b>→</b></a>
+      <a href="colchones.html" data-reveal><span class="service-category-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8h18v9H3zM3 12h18M6 8V5h5v3M3 17v2M21 17v2"/></svg></span><strong>Colchones</strong><small>Individuales, matrimonio y king</small><b>→</b></a>
+      <a href="alfombras.html" data-reveal><span class="service-category-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM5 7H3M5 11H3M5 15H3M5 19H3M19 7h2M19 11h2M19 15h2M19 19h2M9 8h6v8H9z"/></svg></span><strong>Alfombras y textiles</strong><small>Alfombras, moquetas, cortinas y visillos</small><b>→</b></a>
+      <a href="coches.html" data-reveal><span class="service-category-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 16-1-5 2-5h12l2 5-1 5H5ZM4 11h16M7 16v2M17 16v2M7.5 13h.01M16.5 13h.01"/></svg></span><strong>Vehículos y bebé</strong><small>Coches, carritos y sillas infantiles</small><b>→</b></a>
+      <a href="empresas.html" data-reveal><span class="service-category-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V7h10v14M14 11h6v10M8 11h2M8 15h2M8 19h2M17 15h1M17 18h1M2 21h20"/></svg></span><strong>Empresas</strong><small>Oficinas, alojamientos, clínicas y locales</small><b>→</b></a>
     </div>
     <div class="home-inside-links" data-reveal>
       <span>También dentro de Inicio</span>
@@ -176,7 +185,10 @@
   <div class="container">
     <header class="section-head" data-reveal>
       <p class="eyebrow">Precios claros antes de reservar</p>
-      <h2>Una orientación rápida, sin letra pequeña</h2>
+      <div class="conversion-title-row">
+        <h2>Una orientación rápida, sin letra pequeña</h2>
+        <a class="conversion-price-link" href="tarifas.html">Ver precios orientativos <span aria-hidden="true">→</span></a>
+      </div>
       <p class="section-sub">Tarifas ajustadas al mercado de Madrid. El importe final se confirma al revisar tamaño, tejido, manchas y fotografías.</p>
     </header>
     <div class="quick-prices">
@@ -201,7 +213,7 @@
 </section>
 
 <!-- MARQUEE DE SERVICIOS -->
-<section class="marquee" aria-hidden="true">
+<section class="marquee marquee-desktop" aria-hidden="true">
   <div class="marquee-track">
     <span>Limpieza de Sofás en Madrid</span><span aria-hidden="true">·</span>
     <span>Desinfección de Colchones</span><span aria-hidden="true">·</span>
@@ -493,6 +505,6 @@
   </a>
 </div>
 
-<script src="script.js?v=20260805-19" defer></script>
+<script src="script.js?v=20260805-20" defer></script>
 </body>
 </html>
