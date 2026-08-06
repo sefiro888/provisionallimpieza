@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment_1.outputs.page_url || steps.deployment_2.outputs.page_url || steps.deployment_3.outputs.page_url }}
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v6
@@ -34,6 +34,28 @@ jobs:
         with:
           path: .
 
-      - name: Publicar
-        id: deployment
+      - name: Publicar (intento 1)
+        id: deployment_1
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Esperar antes del segundo intento
+        if: steps.deployment_1.outcome == 'failure'
+        shell: bash
+        run: sleep 90
+
+      - name: Publicar (intento 2)
+        id: deployment_2
+        if: steps.deployment_1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Esperar antes del último intento
+        if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure'
+        shell: bash
+        run: sleep 120
+
+      - name: Publicar (intento 3)
+        id: deployment_3
+        if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure'
         uses: actions/deploy-pages@v4
