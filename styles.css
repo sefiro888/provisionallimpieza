@@ -4764,3 +4764,47 @@ html[data-page="index"] .page-atmosphere { opacity: .58; }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation-play-state: paused; }
 }
+
+/* Portada: agrupación clara del catálogo, sin repetir las tarjetas de acceso */
+.services-overview { background: linear-gradient(180deg, var(--paper) 0%, #eef9fc 100%); }
+.service-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.service-overview-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1.35rem;
+  border: 1px solid rgba(10, 62, 104, .12);
+  border-radius: 22px;
+  background: rgba(255,255,255,.86);
+  box-shadow: 0 18px 45px rgba(10, 62, 104, .08);
+}
+.service-overview-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #bdefff, #25b9ec);
+  color: #05254b;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+.service-overview-card h3 { margin: .1rem 0 .45rem; font-size: 1.1rem; }
+.service-overview-card p { margin: 0 0 .85rem; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.service-overview-card a {
+  display: block;
+  width: fit-content;
+  margin-top: .38rem;
+  color: #087bcb;
+  font-size: .84rem;
+  font-weight: 800;
+}
+.service-overview-card a:hover { color: #045a96; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 850px) {
+  .service-overview-grid { grid-template-columns: 1fr; }
+}
