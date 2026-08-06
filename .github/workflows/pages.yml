@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages
+  group: lava-express-pages-v2
   cancel-in-progress: true
 
 jobs:
