@@ -4808,3 +4808,36 @@ html[data-page="index"] .page-atmosphere { opacity: .58; }
 @media (max-width: 850px) {
   .service-overview-grid { grid-template-columns: 1fr; }
 }
+
+/* Proceso de reserva integrado en la paleta Lava Express */
+.booking-flow {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(103, 218, 255, .34);
+  background: linear-gradient(135deg, #071d3c 0%, #0a3a65 58%, #0a5a78 100%);
+  box-shadow: 0 22px 55px rgba(0, 13, 37, .28);
+  color: #fff;
+}
+.booking-flow::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -120px;
+  top: -150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 203, 244, .28), transparent 68%);
+  pointer-events: none;
+}
+.booking-flow > div { position: relative; z-index: 1; border-left-color: rgba(188, 239, 255, .28); }
+.booking-flow > div > span { color: #74dcff; }
+.booking-flow h3 { color: #fff; }
+.booking-flow p { color: rgba(231, 248, 255, .74); }
+.booking-flow-action { padding: 1rem; border: 1px solid rgba(149, 232, 255, .22); border-radius: 18px; background: rgba(2, 18, 46, .3); }
+.booking-flow-action .btn { box-shadow: 0 12px 28px rgba(0, 0, 0, .22); }
+.whatsapp-response-note { color: rgba(231, 248, 255, .72); }
+@media (max-width: 680px) {
+  .booking-flow { padding: 1.1rem; gap: .9rem; }
+  .booking-flow > div { padding: .85rem 0 .85rem 1rem; }
+  .booking-flow-action { padding: 1rem; }
+}
