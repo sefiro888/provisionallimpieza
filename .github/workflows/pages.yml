@@ -18,7 +18,7 @@ concurrency:
 jobs:
   deploy:
     name: Publicar sitio estático
-    runs-on: ubuntu-24.04-arm
+    runs-on: windows-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment_1.outputs.page_url || steps.deployment_2.outputs.page_url || steps.deployment_3.outputs.page_url }}
@@ -41,8 +41,8 @@ jobs:
 
       - name: Esperar antes del segundo intento
         if: steps.deployment_1.outcome == 'failure'
-        shell: bash
-        run: sleep 90
+        shell: pwsh
+        run: Start-Sleep -Seconds 90
 
       - name: Publicar (intento 2)
         id: deployment_2
@@ -52,8 +52,8 @@ jobs:
 
       - name: Esperar antes del último intento
         if: steps.deployment_1.outcome == 'failure' && steps.deployment_2.outcome == 'failure'
-        shell: bash
-        run: sleep 120
+        shell: pwsh
+        run: Start-Sleep -Seconds 120
 
       - name: Publicar (intento 3)
         id: deployment_3
