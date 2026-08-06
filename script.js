@@ -197,13 +197,13 @@
     if (!nav.querySelector('.nav-mobile-head')) {
       nav.insertAdjacentHTML('afterbegin', `
         <div class="nav-mobile-head">
-          <span class="nav-mobile-kicker">Servicio en Madrid</span>
-          <strong>Todo lo importante, a un toque</strong>
-          <small>Servicios, precios, zonas y contacto.</small>
+          <span class="nav-mobile-kicker">Menú principal</span>
+          <strong>¿Cómo podemos ayudarte?</strong>
+          <small>Consulta servicios, precios y cobertura en Madrid.</small>
         </div>`);
       nav.insertAdjacentHTML('beforeend', `
         <div class="nav-mobile-services">
-          <span>¿Qué necesitas limpiar?</span>
+          <span>¿Qué necesitas limpiar hoy?</span>
           <div><a href="servicios.html#hogar">Hogar</a><a href="servicios.html#textiles">Textiles</a><a href="servicios.html#movilidad">Vehículos y bebé</a><a href="servicios.html#profesional">Empresas</a></div>
         </div>
         <div class="nav-mobile-action">
